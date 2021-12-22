@@ -58,7 +58,7 @@ jobs:
           name: "Build with MSBuild"
           command: msbuild -t:Clean,Build -p:Configuration=Release "Code/WebApplication1/WebApplication1.csproj"
       - store_artifacts:
-          path: "Code/WebApplication1/bin/Release"
+          path: "Code/WebApplication1/bin"
 workflows:
   test_and_build:
     jobs:
