@@ -22,6 +22,9 @@ jobs:
             - C:\Users\circleci\.nuget\packages
           key: dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
       - run:
+          name: "Build with MSBuild"
+          command: msbuild /t:Clean,Build /p:Configuration=Release ./Code/WebApplication1
+      - run:
           name: "Run Application Tests"
           command: |
             & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Code/UnitTestProject1/bin/debug/UnitTestProject1.dll
