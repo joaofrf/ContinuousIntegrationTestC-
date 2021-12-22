@@ -16,14 +16,14 @@ jobs:
             - dotnet-packages-v1-{{ checksum "Code/UnitTestProject1/UnitTestProject1.csproj" }}
       - run:
           name: "Install project dependencies"
-          command: dotnet.exe restore ./Code/WebApplication1
+          command: dotnet.exe restore "Code/UnitTestProject1/UnitTestProject1.csproj"
       - save_cache:
           paths:
             - C:\Users\circleci\.nuget\packages
           key: dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
       - run:
           name: "Build with MSBuild"
-          command: msbuild /t:Clean,Build /p:Configuration=Release ./Code/WebApplication1
+          command: msbuild /t:Clean,Build /p:Configuration=Release "Code/UnitTestProject1/UnitTestProject1.csproj"
       - run:
           name: "Run Application Tests"
           command: |
