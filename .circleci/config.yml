@@ -13,13 +13,16 @@ jobs:
       - restore_cache:
           keys:
             - dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
+            - dotnet-packages-v1-{{ checksum "Code/UnitTestProject1/UnitTestProject1.csproj" }}
       - run:
           name: "Install project dependencies"
-          command: dotnet.exe restore
+          command: dotnet.exe restore ./Code/WebApplication1
       - save_cache:
           paths:
             - C:\Users\circleci\.nuget\packages
-          key: dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
+          key: 
+            - dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
+            - dotnet-packages-v1-{{ checksum "Code/UnitTestProject1/UnitTestProject1.csproj" }}
       - run:
           name: "Run Application Tests"
           command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
