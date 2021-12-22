@@ -15,7 +15,7 @@ namespace UnitTestProject1
             y = 10;
             Assert.IsTrue(Helper.Add(x, y) == 20);
 
-            Assert.AreEqual(Helper.Add(x, y), Helper.Add(x, y));
+            Assert.AreEqual(Helper.Add(x, y), Helper.Add(x, y+1));
         }
     }
 }
