@@ -23,7 +23,8 @@ jobs:
           key: dotnet-packages-v1-{{ checksum "Code/WebApplication1/WebApplication1.csproj" }}
       - run:
           name: "Run Application Tests"
-          command: vstest.console.exe ./Code/UnitTestProject1/bin/debug/UnitTestProject1.dll -v n --results-directory:test_coverage --collect:"Code Coverage"
+          command: |
+            & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Code/UnitTestProject1/bin/debug/UnitTestProject1.dll
       - run:
           name: "Print Working Directory"
           command: pwd
